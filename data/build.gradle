@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    def global = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion global["androidSdkCompileVersion"]
+    buildToolsVersion global["androidBuildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion global["androidMinSdkVersion"]
+        targetSdkVersion global["androidTargetSdkVersion"]
+        versionCode global["androidVersionCode"]
+        versionName global["androidVersionName"]
+
+        buildConfigField "String", "API_KEY", API_KEY
+        buildConfigField "String", "PUBLIC_KEY", PUBLIC_KEY
+        buildConfigField "String", "PRIVATE_KEY", PRIVATE_KEY
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    def dataDependencies = rootProject.ext.dataModule
+    def dataTestDependencies = rootProject.ext.dataModuleTest
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.appCompat
+    implementation dataDependencies.coreKtx
+
+    api project(":remote")
+    api project(":cache")
+
+    // Coroutines
+    implementation dataDependencies.coroutineCore
+    implementation dataDependencies.coroutineAndroid
+
+    // Koin
+    implementation dataDependencies.koin
+
+    testImplementation dataTestDependencies.junit
+    androidTestImplementation dataTestDependencies.junitest
+}

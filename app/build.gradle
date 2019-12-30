@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+
+    def global = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion global["androidSdkCompileVersion"]
+    buildToolsVersion global["androidBuildToolsVersion"]
+    defaultConfig {
+        applicationId "com.thiago.marvelapp"
+        minSdkVersion global["androidMinSdkVersion"]
+        targetSdkVersion global["androidTargetSdkVersion"]
+        versionCode global["androidVersionCode"]
+        versionName global["androidVersionName"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+
+    def appDependencies = rootProject.ext.appModule
+    def appTestDependencies = rootProject.ext.appModuleTest
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation appDependencies.kotlin
+    implementation appDependencies.appCompat
+    implementation appDependencies.coreKtx
+    implementation appDependencies.constaintlayout
+
+    implementation project(":data")
+
+    //Stetho
+    implementation appDependencies.stetho
+
+    //Glide
+    implementation appDependencies.glide
+
+    // Navigation
+    implementation appDependencies.navigationFragment
+    implementation appDependencies.navigationUi
+
+    //RecyclerView
+    implementation appDependencies.recyclerView
+
+    //LiveData and ViewModel
+    implementation appDependencies.liveData
+
+    //koin
+    implementation appDependencies.koin
+    implementation appDependencies.koinViewModel
+
+    implementation appDependencies.support
+    testImplementation appTestDependencies.junit
+    androidTestImplementation appTestDependencies.junitest
+    androidTestImplementation appTestDependencies.espresso
+}

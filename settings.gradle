@@ -1,0 +1,2 @@
+include ':app', ':remote', ':cache', ':data'
+rootProject.name='Marvel App'

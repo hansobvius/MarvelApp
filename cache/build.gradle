@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
+
+android {
+    def global = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion global["androidSdkCompileVersion"]
+    buildToolsVersion global["androidBuildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion global["androidMinSdkVersion"]
+        targetSdkVersion global["androidTargetSdkVersion"]
+        versionCode global["androidVersionCode"]
+        versionName global["androidVersionName"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    def cacheDependencies = rootProject.ext.cacheModule
+    def cacheTestDependencies = rootProject.ext.cacheModuleTest
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation cacheDependencies.kotlin
+    implementation cacheDependencies.appCompat
+    implementation cacheDependencies.coreKtx
+
+    //Room Persistence
+    api cacheDependencies.roomRuntime
+    kapt cacheDependencies.roomCompiler
+    implementation cacheDependencies.liveData
+
+    testImplementation cacheTestDependencies.junit
+    androidTestImplementation cacheTestDependencies.junitest
+}

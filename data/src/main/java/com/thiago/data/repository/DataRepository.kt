@@ -16,14 +16,14 @@ import java.io.IOException
 
 class DataRepository(
     val remoteProject: RemoteProject,
-    val databaseRepository: DatabaseRepository): BaseUtilitaries(), DataRepositoryImplementation {
+    val databaseRepository: DatabaseRepository,
+    val modelMapper: ModelMapper): BaseUtilitaries(), DataRepositoryImplementation<HeroesDataModel> {
 
     private var codeHashUser: String
     private var timeStamp: Int
     private var scope: CoroutineScope
     private val job = SupervisorJob()
     private val dataList = databaseRepository.getDatabase()
-    private val mapper: ModelMapper = ModelMapper()
 
     init{
         codeHashUser = getHashCode()
@@ -42,7 +42,7 @@ class DataRepository(
     override fun getData(): LiveData<List<HeroesDataModel>> {
         return Transformations.map(dataList){
             dataList.value!!.map {
-                mapper.cacheToData(it)
+                modelMapper.cacheToData(it)
             }
         }
     }
@@ -55,7 +55,7 @@ class DataRepository(
                         .SERVICE
                         .getSource(LIMIT, API_KEY, timeStamp, codeHashUser).await()
                 request.result.listResult.map {
-                    databaseRepository.insertDatabase(mapper.remoteToCache(it))
+                    databaseRepository.insertDatabase(modelMapper.remoteToCache(it))
                 }
             }catch (e: IOException){
                 Log.i("request", "ERROR")

@@ -1,10 +1,11 @@
 package com.thiago.remote
 
-import com.thiago.remote.endpoint.DataImplementation
+import com.thiago.remote.endpoint.ApiImplementation
 
-class RemoteProject: RemoteImplementation {
+class RemoteProject(
+    private val apiImplementation: ApiImplementation): RemoteImplementation {
     
-    override fun fetchData(): DataImplementation {
-        return DataImplementation
+    override fun fetchData(): ApiImplementation {
+        return this.apiImplementation
     }
 }

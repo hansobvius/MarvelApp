@@ -6,7 +6,6 @@ import com.thiago.data.model.HeroesDataModel
 import com.thiago.data.repository.DataRepository
 
 class DataProject(
-    private val context: Context,
     private val dataRepository: DataRepository): DataImplementation<HeroesDataModel> {
 
     override fun fecthProject() {

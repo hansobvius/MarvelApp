@@ -5,7 +5,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface DataEndpoint {
+interface ApiEndpoint {
 
     @GET("characters")
     fun getSource(@Query("limit")limit: Int,

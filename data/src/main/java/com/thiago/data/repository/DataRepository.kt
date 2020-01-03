@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import com.thiago.cache.DatabaseRepository
+import com.thiago.cache.model.HeroesCacheModel
 import com.thiago.data.mapper.ModelMapper
 import com.thiago.data.model.HeroesDataModel
 import com.thiago.data.utils.DataConstants.LIMIT
@@ -21,13 +22,14 @@ class DataRepository(
 
     private var codeHashUser: String
     private var timeStamp: Int
+    private var dataList: LiveData<List<HeroesCacheModel>>
     private var scope: CoroutineScope
     private val job = SupervisorJob()
-    private val dataList = databaseRepository.getDatabase()
 
     init{
         codeHashUser = getHashCode()
         timeStamp = getTimestamp()
+        dataList = databaseRepository.getDatabase()
         scope = CoroutineScope(job + Dispatchers.Main)
     }
 

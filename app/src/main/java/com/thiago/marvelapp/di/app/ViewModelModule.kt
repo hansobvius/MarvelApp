@@ -6,13 +6,13 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val viewModelModule = module{
-
-    single<EntityMapper>{
-        EntityMapper()
-    }
-
-    viewModel(){
-        HeroesViewModel(androidApplication(), get(), get())
-    }
-}
+//val viewModelModule = module{
+//
+//    single<EntityMapper>{
+//        EntityMapper()
+//    }
+//
+//    viewModel(){
+//        HeroesViewModel(androidApplication(), get(), get())
+//    }
+//}

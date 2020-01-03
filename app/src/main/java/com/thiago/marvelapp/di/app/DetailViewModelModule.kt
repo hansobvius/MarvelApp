@@ -5,9 +5,9 @@ import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val detailViewModelModule = module{
-
-    viewModel {
-        DetailViewModel(androidApplication())
-    }
-}
+//val detailViewModelModule = module{
+//
+//    viewModel {
+//        DetailViewModel(androidApplication())
+//    }
+//}

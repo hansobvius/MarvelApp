@@ -8,7 +8,7 @@ import org.koin.dsl.module
 val dataModule = module{
 
     single<DataRepository>{
-        DataRepository(androidContext(), get())
+        DataRepository(get(), get())
     }
 
     single<DataProject>{

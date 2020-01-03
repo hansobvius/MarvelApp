@@ -15,16 +15,15 @@ import kotlinx.coroutines.*
 import java.io.IOException
 
 class DataRepository(
-    context: Context,
-    val remoteProject: RemoteProject): BaseUtilitaries(), DataRepositoryImplementation {
+    val remoteProject: RemoteProject,
+    val databaseRepository: DatabaseRepository): BaseUtilitaries(), DataRepositoryImplementation {
 
     private var codeHashUser: String
     private var timeStamp: Int
     private var scope: CoroutineScope
-    private val database = DatabaseRepository(context.applicationContext)
     private val job = SupervisorJob()
+    private val dataList = databaseRepository.getDatabase()
     private val mapper: ModelMapper = ModelMapper()
-    private val dataList = database.getDatabase()
 
     init{
         codeHashUser = getHashCode()
@@ -56,7 +55,7 @@ class DataRepository(
                         .SERVICE
                         .getSource(LIMIT, API_KEY, timeStamp, codeHashUser).await()
                 request.result.listResult.map {
-                    database.insertDatabase(mapper.remoteToCache(it))
+                    databaseRepository.insertDatabase(mapper.remoteToCache(it))
                 }
             }catch (e: IOException){
                 Log.i("request", "ERROR")

@@ -15,9 +15,9 @@ import kotlinx.coroutines.*
 import java.io.IOException
 
 class DataRepository(
-    val remoteProject: RemoteProject,
-    val databaseRepository: DatabaseRepository,
-    val modelMapper: ModelMapper): BaseUtilitaries(), DataRepositoryImplementation<HeroesDataModel> {
+    private val remoteProject: RemoteProject,
+    private val databaseRepository: DatabaseRepository,
+    private val modelMapper: ModelMapper): BaseUtilitaries(), DataRepositoryImplementation<HeroesDataModel> {
 
     private var codeHashUser: String
     private var timeStamp: Int

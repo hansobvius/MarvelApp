@@ -9,9 +9,10 @@ import com.thiago.data.DataProject
 import com.thiago.marvelapp.mapper.EntityMapper
 import com.thiago.marvelapp.model.HeroesEntity
 
-class HeroesViewModel(application: Application, val dataProject: DataProject): AndroidViewModel(application){
-
-    private val mapper: EntityMapper = EntityMapper()
+class HeroesViewModel(
+    application: Application,
+    private val dataProject: DataProject,
+    private val mapper: EntityMapper): AndroidViewModel(application){
 
     private val _navigateToHero = MutableLiveData<HeroesEntity>()
 

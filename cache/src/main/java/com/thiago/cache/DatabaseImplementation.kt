@@ -1,11 +1,10 @@
 package com.thiago.cache
 
 import androidx.lifecycle.LiveData
-import com.thiago.cache.model.HeroesCacheModel
 
-interface DatabaseImplementation {
+interface DatabaseImplementation<T> {
 
-    fun insertDatabase(hero: HeroesCacheModel)
+    fun insertDatabase(hero: T)
 
-    fun getDatabase(): LiveData<List<HeroesCacheModel>>
+    fun getDatabase(): LiveData<List<T>>
 }

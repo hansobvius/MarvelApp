@@ -6,7 +6,7 @@ import com.thiago.cache.builder.DatabaseBuider
 import com.thiago.cache.dao.ProjectDao
 import com.thiago.cache.model.HeroesCacheModel
 
-class DatabaseRepository(context: Context): DatabaseImplementation {
+class DatabaseRepository(context: Context): DatabaseImplementation<HeroesCacheModel> {
 
     private val database: ProjectDao = DatabaseBuider.getInstance(context.applicationContext)!!.projectDao
 

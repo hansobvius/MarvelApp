@@ -3,7 +3,6 @@ package com.thiago.marvelapp.di.data
 import com.thiago.data.DataProject
 import com.thiago.data.mapper.ModelMapper
 import com.thiago.data.repository.DataRepository
-import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val dataModule = module{

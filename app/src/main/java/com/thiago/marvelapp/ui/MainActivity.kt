@@ -1,7 +1,7 @@
 package com.thiago.marvelapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.stetho.Stetho
 import com.thiago.data.DataProject
 import com.thiago.marvelapp.BuildConfig

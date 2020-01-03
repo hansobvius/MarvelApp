@@ -1,13 +1,12 @@
 package com.thiago.marvelapp.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-
 import com.thiago.marvelapp.databinding.FragmentHeroesListBinding
 import com.thiago.marvelapp.ui.adapter.MainAdapter
 import com.thiago.marvelapp.util.OnClickListener

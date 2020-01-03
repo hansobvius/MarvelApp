@@ -14,13 +14,14 @@ import com.thiago.remote.endpoint.ApiImplementation
 import kotlinx.coroutines.*
 import java.io.IOException
 
-class DataRepository(context: Context, apiImplementation: ApiImplementation): BaseUtilitaries(), DataRepositoryImplementation {
+class DataRepository(
+    context: Context,
+    val remoteProject: RemoteProject): BaseUtilitaries(), DataRepositoryImplementation {
 
     private var codeHashUser: String
     private var timeStamp: Int
     private var scope: CoroutineScope
     private val database = DatabaseRepository(context.applicationContext)
-    private val remoteProject: RemoteProject = RemoteProject(apiImplementation)
     private val job = SupervisorJob()
     private val mapper: ModelMapper = ModelMapper()
     private val dataList = database.getDatabase()

@@ -5,13 +5,9 @@ import androidx.lifecycle.LiveData
 import com.thiago.data.model.HeroesDataModel
 import com.thiago.data.repository.DataRepository
 
-class DataProject(private val context: Context): DataImplementation<HeroesDataModel> {
-
-    private var dataRepository: DataRepository
-
-    init{
-        dataRepository = DataRepository(context)
-    }
+class DataProject(
+    private val context: Context,
+    private val dataRepository: DataRepository): DataImplementation<HeroesDataModel> {
 
     override fun fecthProject() {
         dataRepository.fetchData()

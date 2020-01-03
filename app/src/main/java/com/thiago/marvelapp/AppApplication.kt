@@ -1,10 +1,9 @@
 package com.thiago.marvelapp
 
 import android.app.Application
-import com.thiago.marvelapp.di.detailViewModelModule
-import com.thiago.marvelapp.di.mainModule
-import com.thiago.marvelapp.di.remoteModule
-import com.thiago.marvelapp.di.viewModelModule
+import com.thiago.marvelapp.di.app.detailViewModelModule
+import com.thiago.marvelapp.di.app.viewModelModule
+import com.thiago.marvelapp.di.data.dataModule
 import com.thiago.remote.RemoteProject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -24,7 +23,7 @@ class AppApplication : Application(){
             androidLogger()
             androidContext(this@AppApplication)
             modules(listOf(
-                mainModule,
+                dataModule,
                 viewModelModule,
                 detailViewModelModule
             ))

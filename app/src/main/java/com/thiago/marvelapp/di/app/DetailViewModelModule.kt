@@ -1,4 +1,4 @@
-package com.thiago.marvelapp.di
+package com.thiago.marvelapp.di.app
 
 import com.thiago.marvelapp.viewmodel.DetailViewModel
 import org.koin.android.ext.koin.androidApplication

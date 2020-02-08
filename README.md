@@ -19,4 +19,6 @@ Libs Uitilizadas:
   -Navigation
 
   -Glide 
+  
+  -Koin
  

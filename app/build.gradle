@@ -68,7 +68,15 @@ dependencies {
     implementation appDependencies.koinViewModel
 
     implementation appDependencies.support
+
+    // Unit Test
     testImplementation appTestDependencies.junit
-    androidTestImplementation appTestDependencies.junitest
+    testImplementation appTestDependencies.junitest
+    testImplementation appTestDependencies.testCoreKtx
+    testImplementation appTestDependencies.testCoreExtKtx
+    testImplementation appTestDependencies.robolectric
+    testImplementation appTestDependencies.archTest
+
+    // Instrumental Test
     androidTestImplementation appTestDependencies.espresso
 }

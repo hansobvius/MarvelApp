@@ -41,8 +41,11 @@ ext{
     //Test
     junit_version = '4.12'
     junit_ext_version = '1.1.1'
+    androidXTestCoreVersion = '1.2.0'
+    androidXTestExtKotlinRunnerVersion = '1.1.1'
+    archTestingVersion = '2.0.0'
     espresso_version = '3.1.1'
-
+    robolectric_version = '4.3.1'
 
     appModule = [
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}",
@@ -67,7 +70,11 @@ ext{
     appModuleTest = [
             junit: "junit:junit:${junit_version}",
             junitest: "androidx.test.ext:junit:${junit_ext_version}",
-            espresso: "androidx.test.espresso:espresso-core:${espresso_version}"
+            testCoreKtx: "androidx.test:core-ktx:${androidXTestCoreVersion}",
+            testCoreExtKtx: "androidx.test.ext:junit-ktx:${androidXTestExtKotlinRunnerVersion}",
+            archTest: "androidx.arch.core:core-testing:${archTestingVersion}",
+            espresso: "androidx.test.espresso:espresso-core:${espresso_version}",
+            robolectric: "org.robolectric:robolectric:${robolectric_version}"
     ]
 
     dataModule = [

@@ -11,8 +11,8 @@ import com.thiago.marvelapp.model.HeroesEntity
 
 class HeroesViewModel(
     application: Application,
-    private val dataProject: DataProject,
-    private val mapper: EntityMapper): AndroidViewModel(application){
+    private val dataProject: DataProject?,
+    private val mapper: EntityMapper?): AndroidViewModel(application){
 
     private val _navigateToHero = MutableLiveData<HeroesEntity>()
 
@@ -25,10 +25,10 @@ class HeroesViewModel(
         get() = _data
 
     fun getDatabase(): LiveData<List<HeroesEntity>>? {
-        val datalist = dataProject.getProject()
+        val datalist = dataProject!!.getProject()
         return Transformations.map(datalist){
            it.map {
-               mapper.dataToPresentation(it)
+               mapper!!.dataToPresentation(it)
            }
         }
     }

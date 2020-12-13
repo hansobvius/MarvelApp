@@ -8,7 +8,7 @@ import com.thiago.cache.dao.ProjectDao
 import com.thiago.cache.model.HeroesCacheModel
 
 @Database(entities = [HeroesCacheModel::class], version = 1, exportSchema= false)
-abstract class DatabaseBuider: RoomDatabase() {
+abstract class DatabaseBuilder: RoomDatabase() {
 
     abstract val projectDao: ProjectDao
 
@@ -17,15 +17,15 @@ abstract class DatabaseBuider: RoomDatabase() {
         private const val PROJECT_DATABASE = "project_database"
 
         @Volatile
-        private var INSTANCE: DatabaseBuider? = null
+        private var INSTANCE: DatabaseBuilder? = null
 
-        fun getInstance(context: Context): DatabaseBuider? {
+        fun getInstance(context: Context): DatabaseBuilder? {
             synchronized(this){
                 var instance = INSTANCE
                 if(instance == null){
                     instance = Room.databaseBuilder(
                             context.applicationContext,
-                            DatabaseBuider::class.java,
+                            DatabaseBuilder::class.java,
                             PROJECT_DATABASE)
                             .fallbackToDestructiveMigration()
                             .build()
